@@ -39,7 +39,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'JenkinsUser', passwordVariable: 'fgdfgdg-asdsb-dsern')]) {
           sh '''
             mvn -B deploy:deploy-file \
-              -Durl=http://localhost:8081/repository/maven-releases/ \
+              -Durl=http://host.docker.internal:8081/repository/maven-releases/ \
               -DrepositoryId=nexus \
               -Dfile=target/spring-boot-complete-0.0.1-SNAPSHOT.jar \
               -DgroupId=com.example \

@@ -39,15 +39,15 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
           sh '''
             mvn -B deploy:deploy-file \
-              -Durl=${NEXUS_URL} \
-              -DrepositoryId=${REPO_ID} \
-              -Dfile=${BUILT_JAR} \
-              -DgroupId=${PROJECT_GROUP} \
-              -DartifactId=${PROJECT_ARTIFACT} \
-              -Dversion=${PROJECT_VERSION} \
+              -Durl=http://localhost:8081/repository/maven-releases/ \
+              -DrepositoryId=nexus \
+              -Dfile=target/spring-boot-complete-0.0.1-SNAPSHOT.jar \
+              -DgroupId=com.example \
+              -DartifactId=spring-boot-complete \
+              -Dversion=0.0.1-SNAPSHOT \
               -Dpackaging=jar \
-              -Dusername=${NEXUS_USER} \
-              -Dpassword=${NEXUS_PASS}
+              -Dusername=$NEXUS_USER \
+              -Dpassword=$NEXUS_PASS
           '''
         }
       }

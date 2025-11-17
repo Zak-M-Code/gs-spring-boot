@@ -36,7 +36,7 @@ pipeline {
 
     stage('Deploy to Nexus') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'JenkinsUser', passwordVariable: 'fgdfgdg-asdsb-dsern')]) {
+        withCredentials([usernamePassword(credentialsId: 'nexus-creds', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
           sh '''
             mvn -B deploy:deploy-file \
               -Durl=http://host.docker.internal:8081/repository/maven-releases/ \
